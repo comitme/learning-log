@@ -1,27 +1,39 @@
 # Learning log
 
-A public log of what I'm learning: Python, data analysis, AI and robotics. One short entry per day about what I learned, what surprised me and where I got stuck. I write it mainly for myself, but in public, so the path is visible and not only the end result.
+![Last commit](https://img.shields.io/github/last-commit/comitme/learning-log?label=last%20entry)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white)
+
+A daily record of what I'm learning in Python, data analysis and AI. Each entry is short: what I learned, what surprised me, where I got stuck and what comes next. Code and Jupyter notebooks sit next to the notes.
+
+I keep it public to stay consistent and to show how I work through problems, not just the finished results.
+
+## Focus areas
+
+- **Python** for data work: pandas, NumPy, Matplotlib
+- **SQL**: querying, joins, aggregations
+- **Machine learning** fundamentals, alongside my AI and robotics studies
 
 ## Progress
 
 <!-- INDEX:START -->
-No entries yet. Create the first one with:
-
-    python scripts/new_entry.py --topic "First entry"
+The first entry is coming soon.
 <!-- INDEX:END -->
 
-## How it works
+## Repository structure
 
-- One entry per day in `entries/MM-YYYY/DD-MM-YYYY.md`, even if it is only three sentences.
-- Jupyter notebooks go to `notebooks/` and the entry links to them.
-- The index and stats above refresh automatically after every push (or manually: `python scripts/update_index.py`).
-- The entry template lives in `templates/entry.md`.
-- All dates use the DD-MM-YYYY format.
+```
+entries/      daily notes, one file per day (entries/MM-YYYY/DD-MM-YYYY.md)
+notebooks/    Jupyter notebooks referenced in the entries
+templates/    the template every entry starts from
+scripts/      helpers that create entries and rebuild the index above
+```
+
+The Progress section is generated automatically by a GitHub Actions workflow after each new entry. All dates use the DD-MM-YYYY format.
 
 ## About me
 
-I study artificial intelligence and robotics. I'm looking for my first job in Python and data.
+Master's student in Artificial Intelligence and Robotics, looking for my first role in Python and data.
 
-- GitHub: [comitme](https://github.com/comitme)
-
-<!-- LinkedIn: add your profile link here -->
+- GitHub: [@comitme](https://github.com/comitme)
+<!-- - LinkedIn: add your profile link here -->

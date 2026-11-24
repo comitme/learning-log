@@ -3,3 +3,9 @@ __pycache__/
 *.pyc
 .DS_Store
 .venv/
+
+# Secrets and local data
+.env
+*.env
+secrets/
+data/private/

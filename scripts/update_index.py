@@ -69,10 +69,7 @@ def activity_bar(dates, today, weeks=4):
 
 def build_block(entries, today):
     if not entries:
-        return (
-            "No entries yet. Create the first one with:\n\n"
-            '    python scripts/new_entry.py --topic "First entry"'
-        )
+        return "The first entry is coming soon."
 
     dates = [e["date"] for e in entries]
     current, longest = streaks(dates, today)
