@@ -5,9 +5,13 @@ Usage: python scripts/update_index.py
 """
 import argparse
 import re
+import sys
 from collections import Counter
 from datetime import date, datetime, timedelta
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from card import build_card  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ENTRIES = ROOT / "entries"
@@ -16,6 +20,8 @@ START = "<!-- INDEX:START -->"
 END = "<!-- INDEX:END -->"
 FILE_NAME = re.compile(r"^(\d{2})-(\d{2})-(\d{4})\.md$")
 DATE_FORMAT = "%d-%m-%Y"
+CARD_PATH = "assets/card.svg"
+CARD = ROOT / CARD_PATH
 
 
 def field(text, name):
@@ -59,68 +65,51 @@ def streaks(dates, today):
     return current, longest
 
 
-def activity_bar(dates, today, weeks=4):
-    days = set(dates)
-    span = [today - timedelta(days=i) for i in range(weeks * 7 - 1, -1, -1)]
-    marks = ["■" if d in days else "·" for d in span]
-    rows = [" ".join(marks[i : i + 7]) for i in range(0, len(marks), 7)]
-    return "\n".join(rows)
+def safe(text):
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("|", "\\|")
+
+
+def tag_badges(tags):
+    return " ".join(f"`{t}`&nbsp;{c}" for t, c in tags)
 
 
 def build_block(entries, today):
     if not entries:
         return "The first entry is coming soon."
 
-    dates = [e["date"] for e in entries]
-    current, longest = streaks(dates, today)
-    total = len(entries)
-    last = max(dates).strftime(DATE_FORMAT)
-
     lines = [
-        f"**{total}** {plural(total, 'entry', 'entries')} · "
-        f"streak: **{current}** {plural(current, 'day', 'days')} · "
-        f"longest streak: **{longest}** {plural(longest, 'day', 'days')} · "
-        f"last entry: {last}",
-        "",
-        "Last 4 weeks (■ marks a day with an entry):",
-        "",
-        "```",
-        activity_bar(dates, today),
-        "```",
+        '<p align="center">',
+        f'  <img src="{CARD_PATH}" alt="Learning log progress: entries, streak and activity">',
+        "</p>",
         "",
     ]
 
     tags = Counter(t for e in entries for t in e["tags"])
     if tags:
-        top = ", ".join(f"`{t}` ({c})" for t, c in tags.most_common(6))
-        lines += [f"Most used tags: {top}", ""]
+        lines += [f"**Most used tags:** {tag_badges(tags.most_common(8))}", ""]
 
     lines += [
         "### Latest entries",
         "",
         "| Date | Topic | Tags |",
-        "| --- | --- | --- |",
+        "| :--- | :--- | :--- |",
     ]
     for e in sorted(entries, key=lambda x: x["date"], reverse=True)[:10]:
-        lines.append(
-            f"| [{e['date'].strftime(DATE_FORMAT)}]({e['path']}) | {e['topic']} | {', '.join(e['tags'])} |"
-        )
+        tag_cells = " ".join(f"`{t}`" for t in e["tags"])
+        lines.append(f"| [{e['date'].strftime(DATE_FORMAT)}]({e['path']}) | {safe(e['topic'])} | {tag_cells} |")
 
-    lines += ["", "### All entries", ""]
+    lines += ["", "<details>", "<summary><b>All entries by month</b></summary>", ""]
     months = {}
     for e in entries:
         months.setdefault((e["date"].year, e["date"].month), []).append(e)
-    for i, ((year, month), items) in enumerate(sorted(months.items(), reverse=True)):
+    for (year, month), items in sorted(months.items(), reverse=True):
         count = len(items)
-        open_attr = " open" if i == 0 else ""
-        lines.append(f"<details{open_attr}>")
-        lines.append(f"<summary>{month:02d}-{year} ({count} {plural(count, 'entry', 'entries')})</summary>")
-        lines.append("")
+        lines += ["", f"**{month:02d}-{year}** ({count} {plural(count, 'entry', 'entries')})", ""]
         for e in sorted(items, key=lambda x: x["date"], reverse=True):
-            lines.append(f"- [{e['date'].strftime(DATE_FORMAT)}]({e['path']}) {e['topic']}")
-        lines += ["", "</details>", ""]
+            lines.append(f"- [{e['date'].strftime(DATE_FORMAT)}]({e['path']}) {safe(e['topic'])}")
+    lines += ["", "</details>"]
 
-    return "\n".join(lines).rstrip()
+    return "\n".join(lines)
 
 
 def main():
@@ -132,9 +121,13 @@ def main():
     text = README.read_text(encoding="utf-8")
     before, rest = text.split(START, 1)
     _, after = rest.split(END, 1)
-    block = build_block(load_entries(), today)
+    entries = load_entries()
+    current, longest = streaks([e["date"] for e in entries], today)
+    CARD.parent.mkdir(exist_ok=True)
+    CARD.write_text(build_card(entries, today, current, longest), encoding="utf-8")
+    block = build_block(entries, today)
     README.write_text(f"{before}{START}\n{block}\n{END}{after}", encoding="utf-8")
-    print("README.md odświeżony.")
+    print("README.md i assets/card.svg odświeżone.")
 
 
 if __name__ == "__main__":
