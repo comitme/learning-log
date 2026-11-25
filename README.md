@@ -17,7 +17,33 @@ I keep it public to stay consistent and to show how I work through problems, not
 ## Progress
 
 <!-- INDEX:START -->
-The first entry is coming soon.
+**1** entry · streak: **1** day · longest streak: **1** day · last entry: 25-11-2026
+
+Last 4 weeks (■ marks a day with an entry):
+
+```
+· · · · · · ·
+· · · · · · ·
+· · · · · · ·
+· · · · · · ■
+```
+
+Most used tags: `python` (1), `pandas` (1), `numpy` (1), `machine-learning` (1), `robotics` (1), `pybullet` (1)
+
+### Latest entries
+
+| Date | Topic | Tags |
+| --- | --- | --- |
+| [25-11-2026](entries/11-2026/25-11-2026.md) | Starting point: what I already know | python, pandas, numpy, machine-learning, robotics, pybullet |
+
+### All entries
+
+<details open>
+<summary>11-2026 (1 entry)</summary>
+
+- [25-11-2026](entries/11-2026/25-11-2026.md) Starting point: what I already know
+
+</details>
 <!-- INDEX:END -->
 
 ## Repository structure
