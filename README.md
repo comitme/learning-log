@@ -18,7 +18,7 @@ I keep it public to stay consistent and to show how I work through problems, not
 
 <!-- INDEX:START -->
 <p align="center">
-  <img src="assets/card.svg" alt="Learning log progress: entries, streak and activity">
+  <img src="assets/card.svg" width="100%" alt="Learning log progress: entries, streak and activity">
 </p>
 
 **Most used tags:** `python`&nbsp;1 `pandas`&nbsp;1 `numpy`&nbsp;1 `machine-learning`&nbsp;1 `robotics`&nbsp;1 `pybullet`&nbsp;1
