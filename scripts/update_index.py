@@ -79,7 +79,7 @@ def build_block(entries, today):
 
     lines = [
         '<p align="center">',
-        f'  <img src="{CARD_PATH}" alt="Learning log progress: entries, streak and activity">',
+        f'  <img src="{CARD_PATH}" width="100%" alt="Learning log progress: entries, streak and activity">',
         "</p>",
         "",
     ]

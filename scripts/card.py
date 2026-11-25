@@ -7,11 +7,11 @@ from datetime import timedelta
 from xml.sax.saxutils import escape
 
 WEEKS = 26
-CELL = 11
-GAP = 3
+CELL = 15
+GAP = 4
 STEP = CELL + GAP
 PAD = 24
-LABEL_W = 28
+LABEL_W = 32
 WIDTH = PAD * 2 + LABEL_W + WEEKS * STEP - GAP
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -22,7 +22,7 @@ STYLE = """
     .num { font: 600 22px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #1f2328; }
     .lbl { font: 400 12px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #59636e; }
     .txt { font: 400 13px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #1f2328; }
-    .sml { font: 400 10px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #59636e; }
+    .sml { font: 400 11px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #59636e; }
     .line { stroke: #d0d7de; }
     .c0 { fill: #ebedf0; }
     .c1 { fill: #40c463; }
@@ -81,7 +81,7 @@ def build_card(entries, today, current, longest):
 
     y += 6
     for row, name in ((0, "Mon"), (2, "Wed"), (4, "Fri")):
-        parts.append(f'<text class="sml" x="{PAD}" y="{y + row * STEP + 9}">{name}</text>')
+        parts.append(f'<text class="sml" x="{PAD}" y="{y + row * STEP + 11}">{name}</text>')
     for w in range(WEEKS):
         for d in range(7):
             day = start + timedelta(weeks=w, days=d)
@@ -98,11 +98,11 @@ def build_card(entries, today, current, longest):
             )
 
     y += 7 * STEP + 8
-    lx = WIDTH - PAD - 2 * STEP - 64
-    parts.append(f'<text class="sml" x="{lx}" y="{y + 9}">no entry</text>')
-    parts.append(f'<rect class="c0" x="{lx + 44}" y="{y}" width="{CELL}" height="{CELL}" rx="2"/>')
-    parts.append(f'<rect class="c1" x="{lx + 44 + STEP}" y="{y}" width="{CELL}" height="{CELL}" rx="2"/>')
-    parts.append(f'<text class="sml" x="{lx + 44 + 2 * STEP + 4}" y="{y + 9}">entry</text>')
+    lx = WIDTH - PAD - 2 * STEP - 74
+    parts.append(f'<text class="sml" x="{lx}" y="{y + 11}">no entry</text>')
+    parts.append(f'<rect class="c0" x="{lx + 50}" y="{y}" width="{CELL}" height="{CELL}" rx="2"/>')
+    parts.append(f'<rect class="c1" x="{lx + 50 + STEP}" y="{y}" width="{CELL}" height="{CELL}" rx="2"/>')
+    parts.append(f'<text class="sml" x="{lx + 50 + 2 * STEP + 4}" y="{y + 11}">entry</text>')
 
     latest = sorted(entries, key=lambda e: e["date"], reverse=True)[:3]
     if latest:
@@ -113,7 +113,7 @@ def build_card(entries, today, current, longest):
         for e in latest:
             y += 22
             parts.append(f'<text class="sml" x="{PAD}" y="{y}">{e["date"].strftime("%d-%m-%Y")}</text>')
-            parts.append(f'<text class="txt" x="{PAD + 70}" y="{y}">{escape(_shorten(e["topic"], 52))}</text>')
+            parts.append(f'<text class="txt" x="{PAD + 70}" y="{y}">{escape(_shorten(e["topic"], 64))}</text>')
 
     height = y + PAD
     body = "\n  ".join(parts)
