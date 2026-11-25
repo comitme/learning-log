@@ -17,7 +17,27 @@ I keep it public to stay consistent and to show how I work through problems, not
 ## Progress
 
 <!-- INDEX:START -->
-The first entry is coming soon.
+<p align="center">
+  <img src="assets/card.svg" alt="Learning log progress: entries, streak and activity">
+</p>
+
+**Most used tags:** `python`&nbsp;1 `pandas`&nbsp;1 `numpy`&nbsp;1 `machine-learning`&nbsp;1 `robotics`&nbsp;1 `pybullet`&nbsp;1
+
+### Latest entries
+
+| Date | Topic | Tags |
+| :--- | :--- | :--- |
+| [25-11-2026](entries/11-2026/25-11-2026.md) | Starting point: what I already know | `python` `pandas` `numpy` `machine-learning` `robotics` `pybullet` |
+
+<details>
+<summary><b>All entries by month</b></summary>
+
+
+**11-2026** (1 entry)
+
+- [25-11-2026](entries/11-2026/25-11-2026.md) Starting point: what I already know
+
+</details>
 <!-- INDEX:END -->
 
 ## Repository structure
