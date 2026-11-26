@@ -21,13 +21,13 @@ I keep it public to stay consistent and to show how I work through problems, not
   <img src="assets/card.svg" width="100%" alt="Learning log progress: entries, streak and activity">
 </p>
 
-**Most used tags:** `python`&nbsp;2 `numpy`&nbsp;2 `pandas`&nbsp;1 `machine-learning`&nbsp;1 `robotics`&nbsp;1 `pybullet`&nbsp;1 `neural-networks`&nbsp;1 `sklearn`&nbsp;1
+**Most used tags:** `python`&nbsp;2 `numpy`&nbsp;2 `pandas`&nbsp;1 `machine-learning`&nbsp;1 `robotics`&nbsp;1 `pybullet`&nbsp;1 `neural-networks`&nbsp;1 `scikit-learn`&nbsp;1
 
 ### Latest entries
 
 | Date | Topic | Tags |
 | :--- | :--- | :--- |
-| [26-11-2026](entries/11-2026/26-11-2026.md) | Introduction to Neural Networks | `python` `neural-networks` `sklearn` `numpy` `matplotlib` |
+| [26-11-2026](entries/11-2026/26-11-2026.md) | Introduction to Neural Networks | `python` `neural-networks` `scikit-learn` `numpy` `matplotlib` |
 | [25-11-2026](entries/11-2026/25-11-2026.md) | Starting point: what I already know | `python` `pandas` `numpy` `machine-learning` `robotics` `pybullet` |
 
 <details>
