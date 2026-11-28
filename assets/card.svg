@@ -45,8 +45,8 @@
   <rect class="c0" x="56" y="153" width="15" height="15" rx="2"/>
   <rect class="c1" x="56" y="172" width="15" height="15" rx="2"/>
   <rect class="c1" x="56" y="191" width="15" height="15" rx="2"/>
-  <rect class="c1" x="56" y="210" width="15" height="15" rx="2"/><rect class="today" x="56.5" y="210.5" width="14" height="14" rx="2" fill="none"/>
-  <rect class="fut" x="56" y="229" width="15" height="15" rx="2"/>
+  <rect class="c1" x="56" y="210" width="15" height="15" rx="2"/>
+  <rect class="c0" x="56" y="229" width="15" height="15" rx="2"/><rect class="today" x="56.5" y="229.5" width="14" height="14" rx="2" fill="none"/>
   <rect class="fut" x="56" y="248" width="15" height="15" rx="2"/>
   <rect class="fut" x="75" y="134" width="15" height="15" rx="2"/>
   <rect class="fut" x="75" y="153" width="15" height="15" rx="2"/>
